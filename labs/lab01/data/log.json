@@ -1,0 +1,150 @@
+[
+    {
+        "timestamp": "2026-09-28 21:22:11",
+        "username": "nazar_admin",
+        "action": "login",
+        "status": "SUCCESS"
+    },
+    {
+        "timestamp": "2026-09-28 21:22:11",
+        "username": "nazar_admin",
+        "action": "login",
+        "status": "FAILED_INVALID_PASSWORD"
+    },
+    {
+        "timestamp": "2026-09-28 21:22:11",
+        "username": "unknown_user",
+        "action": "login",
+        "status": "FAILED_USER_NOT_FOUND"
+    },
+    {
+        "timestamp": "2026-09-28 21:22:11",
+        "username": "ihor_analyst",
+        "action": "login",
+        "status": "SUCCESS"
+    },
+    {
+        "timestamp": "2026-09-28 21:36:02",
+        "username": "nazar_admin",
+        "action": "login",
+        "status": "SUCCESS"
+    },
+    {
+        "timestamp": "2026-09-28 21:36:02",
+        "username": "nazar_admin",
+        "action": "login",
+        "status": "FAILED_INVALID_PASSWORD"
+    },
+    {
+        "timestamp": "2026-09-28 21:36:02",
+        "username": "unknown_user",
+        "action": "login",
+        "status": "FAILED_USER_NOT_FOUND"
+    },
+    {
+        "timestamp": "2026-09-28 21:36:02",
+        "username": "ihor_analyst",
+        "action": "login",
+        "status": "SUCCESS"
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-09-28 21:55:38",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-09-28 21:55:38",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-28 21:55:38",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-09-28 21:55:38",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-09-28 21:55:38",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-09-28 21:56:45",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-09-28 21:56:45",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-28 21:56:45",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-09-28 21:56:46",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-09-28 21:56:46",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    }
+]
