@@ -1,3 +1,5 @@
+"""Завдання 2: Багаторівнева система контролю доступу."""
+
 import os
 import sys
 
@@ -45,7 +47,7 @@ RESOURCES = {
     "public_info.txt": {"required_level": 1, "action": "read"},
 }
 
-
+"""Головна функція демонстрації систем контролю доступу."""
 def check_access(
     username: str, resource_name: str, requested_action: str
 ) -> tuple[bool, str]:

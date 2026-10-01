@@ -146,5 +146,105 @@
             "SomePassword1!"
         ],
         "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-01 20:36:32",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-01 20:36:32",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-01 20:36:32",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-01 20:36:32",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-01 20:36:32",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-01 20:44:44",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-01 20:44:44",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-01 20:44:44",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-01 20:44:44",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-01 20:44:44",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
     }
 ]

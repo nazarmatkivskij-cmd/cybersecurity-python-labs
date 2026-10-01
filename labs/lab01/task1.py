@@ -1,3 +1,5 @@
+"""Завдання 1: Комплексний аналізатор надійності паролів."""
+
 import os
 import random
 import sys
@@ -19,7 +21,7 @@ PASSWORDS = [
 ]
 
 CRITERIA = {
-    "min_length": 8,
+    "min_length": 9,
     "require_digits": True,
     "require_upper": True,
     "require_special": True,
@@ -35,8 +37,8 @@ FORBIDDEN_PASSWORDS = {
 }
 SPECIAL_CHARS = set("!@#$%^&*()_+-=[]{}|;:,.<>?")
 
-
-def evaluate_password(
+"""Аналізує стійкість паролів"""
+def analyze_password(
     password: str, all_passwords: list, criteria: dict, forbidden: set
 ) -> str:
     min_len = criteria["min_length"]
@@ -81,7 +83,7 @@ def run_task1():
     print("-" * 55)
 
     for pwd in working_passwords:
-        category = evaluate_password(
+        category = analyze_password(
             pwd, working_passwords, CRITERIA, FORBIDDEN_PASSWORDS
         )
         print(f"{pwd:<25} | {category}")

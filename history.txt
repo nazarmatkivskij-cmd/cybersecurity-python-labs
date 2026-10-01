@@ -1,0 +1,727 @@
+﻿git clone https://github.com/nazarmatkivskij-cmd/cybersecurity-python-labs.git
+cd cybersecurity-python-labs
+ls
+ls -Force
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.\.venv\Scripts\Activate.ps1
+# 1. Створення папок shared та labs\lab01
+mkdir shared, labs\lab01
+# 2. Створення порожніх файлів
+New-Item -ItemType File requirements.txt
+New-Item -ItemType File shared\__init__.py
+New-Item -ItemType File shared\student.py
+New-Item -ItemType File labs\lab01\__init__.py
+New-Item -ItemType File labs\lab01\main.py
+New-Item -ItemType File labs\lab01\task1.py
+New-Item -ItemType File labs\lab01\task2.py
+New-Item -ItemType File labs\lab01\task3.py@'
+STUDENT_NAME = "Матківський Назар Романович"
+GROUP_NAME = "КБ-205"
+VARIANT_NUMBER = 15
+'@ | Set-Content -Encoding UTF8 shared\student.py
+'STUDENT_NAME = "Матківський Назар Романович"', 'GROUP_NAME = "КБ-205"', 'VARIANT_NUMBER = 15' | Set-Content -Encoding UTF8 shared\student.py
+@'
+import random
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+PASSWORDS = [
+    "IoT@S3curity", "standard", "Blockchain@Pr0tect", "typical123",
+    "AI@Cybersec", "normal", "Quantum@Crypt0", "general123",
+    "Edge@S3curity", "common"
+]
+
+CRITERIA = {
+    "min_length": 8,
+    "require_digits": True,
+    "require_upper": True,
+    "require_special": True
+}
+
+FORBIDDEN_PASSWORDS = {"standard", "typical123", "normal", "general123", "common", "guest"}
+SPECIAL_CHARS = set("!@#$%^&*()_+-=[]{}|;:,.<>?")
+
+
+def evaluate_password(password: str, all_passwords: list, criteria: dict, forbidden: set) -> str:
+    min_len = criteria["min_length"]
+    
+    if password in forbidden or len(password) < min_len:
+        return "Заборонений"
+    
+    has_digit = any(c.isdigit() for c in password)
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_special = any(c in SPECIAL_CHARS for c in password)
+    
+    meets_all = has_digit and has_upper and has_lower and has_special
+    meets_any = has_digit or has_upper or has_lower or has_special
+
+    is_unique = all_passwords.count(password) == 1
+
+    if meets_all and len(password) >= (min_len + 4) and is_unique:
+        return "Дуже сильний"
+    
+    if meets_all and len(password) < (min_len + 4):
+        return "Сильний"
+    
+    if meets_any:
+        return "Середній"
+    
+    return "Слабкий"
+
+
+def run_task1():
+    print("=" * 60)
+    print(f"Студент: {STUDENT_NAME} | Група: {GROUP_NAME} | Варіант: {VARIANT_NUMBER}")
+    print("Завдання 1: Комплексний аналізатор надійності паролів")
+    print("=" * 60)
+
+    working_passwords = PASSWORDS.copy()
+    random.seed(42)
+    random_indices = random.sample(range(len(working_passwords)), 3)
+    for idx in random_indices:
+        working_passwords.append(working_passwords[idx])
+
+    print(f"\n{'Пароль':<25} | {'Категорія надійності'}")
+    print("-" * 55)
+
+    for pwd in working_passwords:
+        category = evaluate_password(pwd, working_passwords, CRITERIA, FORBIDDEN_PASSWORDS)
+        print(f"{pwd:<25} | {category}")
+
+
+if __name__ == "__main__":
+    run_task1()
+'@ | Set-Content -Encoding UTF8 labs\lab01\task1.py
+python labs\lab01\task1.py
+@'
+import random
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+PASSWORDS = [
+    "IoT@S3curity", "standard", "Blockchain@Pr0tect", "typical123",
+    "AI@Cybersec", "normal", "Quantum@Crypt0", "general123",
+    "Edge@S3curity", "common"
+]
+
+CRITERIA = {
+    "min_length": 8,
+    "require_digits": True,
+    "require_upper": True,
+    "require_special": True
+}
+
+FORBIDDEN_PASSWORDS = {"standard", "typical123", "normal", "general123", "common", "guest"}
+SPECIAL_CHARS = set("!@#$%^&*()_+-=[]{}|;:,.<>?")
+
+
+def evaluate_password(password: str, all_passwords: list, criteria: dict, forbidden: set) -> str:
+    min_len = criteria["min_length"]
+    
+    if password in forbidden or len(password) < min_len:
+        return "Заборонений"
+    
+    has_digit = any(c.isdigit() for c in password)
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_special = any(c in SPECIAL_CHARS for c in password)
+    
+    meets_all = has_digit and has_upper and has_lower and has_special
+    meets_any = has_digit or has_upper or has_lower or has_special
+
+    is_unique = all_passwords.count(password) == 1
+
+    if meets_all:
+        if len(password) >= (min_len + 4) and is_unique:
+            return "Дуже сильний"
+        return "Сильний"
+    
+    if meets_any:
+        return "Середній"
+    
+    return "Слабкий"
+
+
+def run_task1():
+    print("=" * 60)
+    print(f"Студент: {STUDENT_NAME} | Група: {GROUP_NAME} | Варіант: {VARIANT_NUMBER}")
+    print("Завдання 1: Комплексний аналізатор надійності паролів")
+    print("=" * 60)
+
+    working_passwords = PASSWORDS.copy()
+    random.seed(42)
+    random_indices = random.sample(range(len(working_passwords)), 3)
+    for idx in random_indices:
+        working_passwords.append(working_passwords[idx])
+
+    print(f"\n{'Пароль':<25} | {'Категорія надійності'}")
+    print("-" * 55)
+
+    for pwd in working_passwords:
+        category = evaluate_password(pwd, working_passwords, CRITERIA, FORBIDDEN_PASSWORDS)
+        print(f"{pwd:<25} | {category}")
+
+
+if __name__ == "__main__":
+    run_task1()
+'@ | Set-Content -Encoding UTF8 labs\lab01\task1.py
+python labs\lab01\task1.py
+@'
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+ROLE_PERMISSIONS = {
+    "admin": {"read", "write", "delete", "execute", "export"},
+    "analyst": {"read", "write", "export"},
+    "auditor": {"read", "export"},
+    "guest": {"read"}
+}
+
+USERS = {
+    "nazar_admin": {
+        "role": "admin",
+        "department": "Cybersecurity",
+        "is_active": True,
+        "clearance_level": 3
+    },
+    "ihor_analyst": {
+        "role": "analyst",
+        "department": "SOC",
+        "is_active": True,
+        "clearance_level": 2
+    },
+    "olena_auditor": {
+        "role": "auditor",
+        "department": "Audit",
+        "is_active": False,
+        "clearance_level": 2
+    },
+    "guest_user": {
+        "role": "guest",
+        "department": "Guest",
+        "is_active": True,
+        "clearance_level": 1
+    }
+}
+
+RESOURCES = {
+    "confidential_report.pdf": {"required_level": 2, "action": "read"},
+    "security_logs.db": {"required_level": 3, "action": "delete"},
+    "system_settings.conf": {"required_level": 3, "action": "write"},
+    "public_info.txt": {"required_level": 1, "action": "read"}
+}
+
+
+def check_access(username: str, resource_name: str, requested_action: str) -> tuple[bool, str]:
+    user = USERS.get(username)
+    if not user:
+        return False, f"Користувача '{username}' не знайдено."
+
+    if not user["is_active"]:
+        return False, f"Акаунт користувача '{username}' деактивовано."
+
+    user_role = user["role"]
+    allowed_actions = ROLE_PERMISSIONS.get(user_role, set())
+
+    if requested_action not in allowed_actions:
+        return False, f"Роль '{user_role}' не має дозволу на дію '{requested_action}'."
+
+    resource = RESOURCES.get(resource_name)
+    if resource:
+        if user["clearance_level"] < resource["required_level"]:
+            return False, f"Недостатній рівень доступу (потрібно {resource['required_level']}, є {user['clearance_level']})."
+
+    return True, "Доступ дозволено."
+
+
+def run_task2():
+    print("=" * 60)
+    print(f"Студент: {STUDENT_NAME} | Група: {GROUP_NAME} | Варіант: {VARIANT_NUMBER}")
+    print("Завдання 2: Система контролю доступу (RBAC + ABAC)")
+    print("=" * 60)
+
+    test_cases = [
+        ("nazar_admin", "security_logs.db", "delete"),
+        ("ihor_analyst", "confidential_report.pdf", "read"),
+        ("ihor_analyst", "system_settings.conf", "write"),
+        ("olena_auditor", "confidential_report.pdf", "read"),
+        ("guest_user", "security_logs.db", "delete"),
+        ("guest_user", "public_info.txt", "read"),
+    ]
+
+    print(f"\n{'Користувач':<15} | {'Ресурс':<24} | {'Дія':<8} | {'Результат':<10} | {'Причина'}")
+    print("-" * 80)
+
+    for username, resource, action in test_cases:
+        granted, reason = check_access(username, resource, action)
+        status = "ALLOWED" if granted else "DENIED"
+        print(f"{username:<15} | {resource:<24} | {action:<8} | {status:<10} | {reason}")
+
+
+if __name__ == "__main__":
+    run_task2()
+'@ | Set-Content -Encoding UTF8 labs\lab01\task2.py
+python labs\lab01\task2.py
+@'
+import sys
+import os
+import json
+import hashlib
+import sqlite3
+from datetime import datetime
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
+os.makedirs(DATA_DIR, exist_ok=True)
+
+DB_PATH = os.path.join(DATA_DIR, "users.db")
+LOG_PATH = os.path.join(DATA_DIR, "log.json")
+
+
+def hash_password(password: str) -> str:
+    """Хешування пароля за допомогою SHA-256 з «солонкою»."""
+    salt = "lab01_secure_salt"
+    return hashlib.sha256((password + salt).encode('utf-8')).hexdigest()
+
+
+def init_database():
+    """Ініціалізація SQLite бази даних та створення таблиці користувачів."""
+    if os.path.exists(DB_PATH):
+        os.remove(DB_PATH)
+        
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            role TEXT NOT NULL
+        )
+    """)
+    
+    # Додаємо тестових користувачів з хешованими паролями
+    sample_users = [
+        ("nazar_admin", hash_password("IoT@S3curity"), "admin"),
+        ("ihor_analyst", hash_password("Blockchain@Pr0tect"), "analyst"),
+        ("guest_user", hash_password("Edge@S3curity"), "guest")
+    ]
+    
+    cursor.executemany("INSERT OR IGNORE INTO users (username, password_hash, role) VALUES (?, ?, ?)", sample_users)
+    conn.commit()
+    conn.close()
+
+
+def log_event(username: str, action: str, status: str):
+    """Логування подій у JSON файл."""
+    log_entry = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "username": username,
+        "action": action,
+        "status": status
+    }
+    
+    logs = []
+    if os.path.exists(LOG_PATH):
+        try:
+            with open(LOG_PATH, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except json.JSONDecodeError:
+            logs = []
+            
+    logs.append(log_entry)
+    with open(LOG_PATH, "w", encoding="utf-8") as f:
+        json.dump(logs, f, indent=4, ensure_ascii=False)
+
+
+def authenticate_user(username: str, password: str) -> bool:
+    """Перевірка автентифікації користувача через БД та логування результату."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT password_hash FROM users WHERE username = ?", (username,))
+    row = cursor.fetchone()
+    conn.close()
+    
+    if not row:
+        log_event(username, "login", "FAILED_USER_NOT_FOUND")
+        return False
+        
+    stored_hash = row[0]
+    input_hash = hash_password(password)
+    
+    if stored_hash == input_hash:
+        log_event(username, "login", "SUCCESS")
+        return True
+    else:
+        log_event(username, "login", "FAILED_INVALID_PASSWORD")
+        return False
+
+
+def run_task3():
+    print("=" * 60)
+    print(f"Студент: {STUDENT_NAME} | Група: {GROUP_NAME} | Варіант: {VARIANT_NUMBER}")
+    print("Завдання 3: Хешування, Бази Даних та Логування")
+    print("=" * 60)
+
+    init_database()
+    print("[+] Базу даних успішно створено та заповнено.")
+
+    # Тести автентифікації
+    tests = [
+        ("nazar_admin", "IoT@S3curity"),       # Вірний пароль
+        ("nazar_admin", "WrongPassword"),     # Невірний пароль
+        ("unknown_user", "some_pass"),        # Неіснуючий користувач
+        ("ihor_analyst", "Blockchain@Pr0tect") # Вірний пароль
+    ]
+
+    print("\nВиконання тестових спроб входу:")
+    for uname, pwd in tests:
+        res = authenticate_user(uname, pwd)
+        print(f"Користувач: {uname:<15} | Пароль: {pwd:<20} | Успіх: {str(res)}")
+
+    print(f"\n[+] Події успішно залоговано у файл: {LOG_PATH}")
+
+
+if __name__ == "__main__":
+    run_task3()
+'@ | Set-Content -Encoding UTF8 labs\lab01\task3.py
+python labs\lab01\task3.py
+ruff check --fix .
+pip install ruff
+ruff check --fix .
+ruff format .
+python labs\lab01\task1.py
+python labs\lab01\task2.py
+python labs\lab01\task3.py@'
+import sys
+import os
+
+# Додаємо шлях для імпорту спільних модулів та завдань
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+from labs.lab01.task1 import run_task1
+from labs.lab01.task2 import run_task2
+from labs.lab01.task3 import run_task3
+
+
+def main():
+    print("=" * 70)
+    print(f"КУРС: Безпека програмного забезпечення / Python Labs")
+    print(f"СТУДЕНТ: {STUDENT_NAME} | ГРУПА: {GROUP_NAME} | ВАРІАНТ: {VARIANT_NUMBER}")
+    print("=" * 70)
+    print("Демонстрація виконання Лабораторної роботи №1\n")
+
+    print("\n[ ЕТАП 1 ] Запуск Завдання 1: Аналізатор надійності паролів")
+    run_task1()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 2 ] Запуск Завдання 2: Система контролю доступу (RBAC + ABAC)")
+    run_task2()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 3 ] Запуск Завдання 3: Хешування, Бази Даних та Логування")
+    run_task3()
+
+    print("\n" + "=" * 70)
+    print("Усі завдання Лабораторної роботи №1 успішно виконано та продемонстровано!")
+    print("=" * 70)
+
+
+if __name__ == "__main__":
+    main()
+'@ | Set-Content -Encoding UTF8 labs\lab01\main.py
+python labs\lab01\main.py
+ruff check --fix .
+ruff format .
+@'
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+from labs.lab01.task1 import run_task1
+from labs.lab01.task2 import run_task2
+from labs.lab01.task3 import run_task3
+
+
+def main():
+    print("=" * 70)
+    print(f"КУРС: Безпека програмного забезпечення / Python Labs")
+    print(f"СТУДЕНТ: {STUDENT_NAME} | ГРУПА: {GROUP_NAME} | ВАРІАНТ: {VARIANT_NUMBER}")
+    print("=" * 70)
+    print("Демонстрація виконання Лабораторної роботи №1\n")
+
+    print("\n[ ЕТАП 1 ] Запуск Завдання 1: Аналізатор надійності паролів")
+    run_task1()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 2 ] Запуск Завдання 2: Система контролю доступу (RBAC + ABAC)")
+    run_task2()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 3 ] Запуск Завдання 3: Хешування, Бази Даних та Логування")
+    run_task3()
+
+    print("\n" + "=" * 70)
+    print("Усі завдання Лабораторної роботи №1 успішно виконано та продемонстровано!")
+    print("=" * 70)
+
+
+if __name__ == "__main__":
+    main()
+'@ | Set-Content -Encoding UTF8 labs\lab01\main.py
+python labs\lab01\main.py
+@'
+import sys
+import os
+import csv
+import json
+import hashlib
+from datetime import datetime
+from functools import wraps
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
+os.makedirs(DATA_DIR, exist_ok=True)
+
+CSV_PATH = os.path.join(DATA_DIR, "users.csv")
+LOG_PATH = os.path.join(DATA_DIR, "log.json")
+
+# Власний виняток для перевірки довжини пароля
+class ValidationError(Exception):
+    pass
+
+
+def generate_hash(password: str, salt: str = "00015") -> str:
+    """Генерація хешу (SHA-256 для варіанта 15) з персональною солонкою."""
+    if password is None or salt is None or password == "" or salt == "":
+        raise ValueError("Пароль або сіль не можуть бути порожніми.")
+    
+    # Мінімальна довжина пароля згідно з логікою Завдання 1 (мін. 8 символів)
+    min_length = 8
+    if len(password) < min_length:
+        raise ValidationError(f"Пароль занадто короткий (мінімум {min_length} символів).")
+        
+    data = password + salt
+    return hashlib.sha256(data.encode('utf-8')).hexdigest()
+
+
+def log_event(func):
+    """Декоратор для логування подій автентифікації у JSON-файл."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        username = args[0] if args else kwargs.get("username", "unknown")
+        result_status = "failure"
+        try:
+            res = func(*args, **kwargs)
+            if res:
+                result_status = "success"
+            return res
+        except (ValueError, ValidationError, FileNotFoundError, PermissionError, IOError) as e:
+            result_status = f"failure ({type(e).__name__})"
+            raise
+        finally:
+            log_entry = {
+                "event": "login",
+                "user": username,
+                "result": result_status,
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "args": list(args[1:]),
+                "kwargs": kwargs
+            }
+            
+            logs = []
+            if os.path.exists(LOG_PATH):
+                try:
+                    with open(LOG_PATH, "r", encoding="utf-8") as f:
+                        logs = json.load(f)
+                except (json.JSONDecodeError, FileNotFoundError):
+                    logs = []
+                    
+            logs.append(log_entry)
+            try:
+                with open(LOG_PATH, "w", encoding="utf-8") as f:
+                    json.dump(logs, f, indent=4, ensure_ascii=False)
+            except IOError:
+                pass
+                
+    return wrapper
+
+
+def create_user(username: str, password: str) -> tuple[str, str]:
+    """Створення пари (логін, хеш) з персональною солонкою."""
+    hashed = generate_hash(password, salt=f"{VARIANT_NUMBER:05d}" if isinstance(VARIANT_NUMBER, int) else "00015")
+    return username, hashed
+
+
+def create_users(users_list: list[tuple[str, str]]):
+    """Створення CSV-файлу бази даних користувачів з обробкою винятків."""
+    try:
+        os.makedirs(DATA_DIR, exist_ok=True)
+        with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            for uname, pwd in users_list:
+                username, hash_val = create_user(uname, pwd)
+                writer.writerow([username, hash_val])
+    except (PermissionError, IOError) as e:
+        print(f"Помилка доступу або запису файлу: {e}")
+        raise
+
+
+@log_event
+def login(username: str, password: str) -> bool:
+    """Автентифікація користувача з перевірками та декоратором логування."""
+    if not username or not password:
+        raise ValueError("Логін або пароль не можуть бути порожніми.")
+
+    users_db = []
+    try:
+        if not os.path.exists(CSV_PATH):
+            raise FileNotFoundError("Файл бази даних користувачів не знайдено.")
+            
+        with open(CSV_PATH, "r", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if len(row) == 2:
+                    users_db.append((row[0], row[1]))
+    except (FileNotFoundError, PermissionError, IOError) as e:
+        print(f"Помилка роботи з файлом бази даних: {e}")
+        raise
+
+    input_hash = generate_hash(password, salt=f"{VARIANT_NUMBER:05d}" if isinstance(VARIANT_NUMBER, int) else "00015")
+
+    for db_user, db_hash in users_db:
+        if db_user == username and db_hash == input_hash:
+            return True
+
+    return False
+
+
+def run_task3():
+    print("=" * 60)
+    print(f"Студент: {STUDENT_NAME} | Група: {GROUP_NAME} | Варіант: {VARIANT_NUMBER}")
+    print("Завдання 3: Хешування, CSV База Даних, Декоратор Логування та Винятки")
+    print("=" * 60)
+
+    # 10 тестових користувачів
+    users_to_register = [
+        ("nazar_admin", "IoT@S3curity"),
+        ("ihor_analyst", "Blockchain@Pr0tect"),
+        ("olena_auditor", "Quantum@Crypt0"),
+        ("guest_user", "Edge@S3curity"),
+        ("user_five", "Standard123!"),
+        ("user_six", "CyberSecure99@"),
+        ("user_seven", "NetProtect#1"),
+        ("user_eight", "CodeGuard$55"),
+        ("user_nine", "SafeAccess*77"),
+        ("user_ten", "FireWall&33")
+    ]
+
+    try:
+        create_users(users_to_register)
+        print("[+] Базу даних (CSV) успішно створено та заповнено 10 користувачами.")
+    except Exception as e:
+        print(f"[-] Помилка створення бази: {e}")
+
+    # Тести автентифікації та обробки винятків
+    test_cases = [
+        ("nazar_admin", "IoT@S3curity"),       # Успіх
+        ("nazar_admin", "WrongPassword"),     # Невірний пароль
+        ("nazar_admin", ""),                  # ValueError (порожній пароль)
+        ("nazar_admin", "short"),             # ValidationError (короткий пароль)
+        ("unknown_user", "SomePassword1!"),   # Неіснуючий користувач
+    ]
+
+    print("\nВиконання тестових спроб входу:")
+    for uname, pwd in test_cases:
+        try:
+            res = login(uname, pwd)
+            print(f"Користувач: {uname:<15} | Пароль: {pwd:<18} | Успіх: {str(res)}")
+        except (ValueError, ValidationError) as err:
+            print(f"Користувач: {uname:<15} | Пароль: {pwd:<18} | Виняток: {type(err).__name__} ({err})")
+        except Exception as err:
+            print(f"Користувач: {uname:<15} | Пароль: {pwd:<18} | Системна помилка: {err}")
+
+    print(f"\n[+] Події залоговано у форматі JSON у файл: {LOG_PATH}")
+
+
+if __name__ == "__main__":
+    run_task3()
+'@ | Set-Content -Encoding UTF8 labs\lab01\task3.py
+python labs\lab01\task3.py
+@'
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from shared.student import STUDENT_NAME, GROUP_NAME, VARIANT_NUMBER
+
+from labs.lab01.task1 import run_task1
+from labs.lab01.task2 import run_task2
+from labs.lab01.task3 import run_task3
+
+
+def main():
+    print("=" * 70)
+    print(f"КУРС: Безпека програмного забезпечення / Python Labs")
+    print(f"СТУДЕНТ: {STUDENT_NAME} | ГРУПА: {GROUP_NAME} | ВАРІАНТ: {VARIANT_NUMBER}")
+    print("=" * 70)
+    print("Демонстрація виконання Лабораторної роботи №1\n")
+
+    print("\n[ ЕТАП 1 ] Запуск Завдання 1: Аналізатор надійності паролів")
+    run_task1()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 2 ] Запуск Завдання 2: Система контролю доступу (RBAC + ABAC)")
+    run_task2()
+
+    print("\n" + "=" * 70)
+    print("[ ЕТАП 3 ] Запуск Завдання 3: Хешування, CSV База Даних та Логування")
+    run_task3()
+
+    print("\n" + "=" * 70)
+    print("Усі завдання Лабораторної роботи №1 успішно виконано та продемонстровано!")
+    print("=" * 70)
+
+
+if __name__ == "__main__":
+    main()
+'@ | Set-Content -Encoding UTF8 labs\lab01\main.py
+python labs\lab01\main.py
+git init
+git add .
+git commit -m "Initial commit: Lab 1 completed"
+git branch -M main
+git remote add origin https://github.com/ваш_логін/cybersecurity-python-labs.git
+git push -u origin main
+git config --global user.name "Nazar Matkivskyi"
+git config --global user.email "nazarmatkivskij@gmail.com"
+git remote set-url origin https://github.com/ваш_логін/cybersecurity-python-labs.git
+git add .
+git commit -m "Initial commit: Lab 1 completed"
+git push -u origin mainваш_логін
+git config --global user.name "Nazar Matkivskyi"
+git config --global user.email "nazarmatkivskij@gmail.com"
+git remote set-url origin https://github.com/ваш_логін/cybersecurity-python-labs.git
+git push -u origin main
+git remote set-url origin https://github.com/NazarMatkivskyi/cybersecurity-python-labs.git
+git push -u origin main
+git push -u origin main
