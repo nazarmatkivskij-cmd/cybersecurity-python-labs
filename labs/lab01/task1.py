@@ -4,9 +4,11 @@ import os
 import random
 import sys
 
+# Налаштування шляхів для імпорту спільних даних студента з папки shared/
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from shared.student import GROUP_NAME, STUDENT_NAME, VARIANT_NUMBER
 
+# Початковий список тестових паролів
 PASSWORDS = [
     "IoT@S3curity",
     "standard",
@@ -20,6 +22,7 @@ PASSWORDS = [
     "common",
 ]
 
+# Критерії оцінки надійності пароля
 CRITERIA = {
     "min_length": 9,
     "require_digits": True,
@@ -27,6 +30,7 @@ CRITERIA = {
     "require_special": True,
 }
 
+# Множина заборонених (скомпрометованих або занадто простих) паролів
 FORBIDDEN_PASSWORDS = {
     "standard",
     "typical123",
@@ -37,12 +41,18 @@ FORBIDDEN_PASSWORDS = {
 }
 SPECIAL_CHARS = set("!@#$%^&*()_+-=[]{}|;:,.<>?")
 
-"""Аналізує стійкість паролів"""
+
 def analyze_password(
     password: str, all_passwords: list, criteria: dict, forbidden: set
 ) -> str:
+    """Аналізує стійкість переданого пароля за заданими критеріями
+
+    та повертає категорію надійності («Заборонений», «Слабкий»,
+    «Середній», «Сильний», «Дуже сильний»).
+    """
     min_len = criteria["min_length"]
 
+    # Перевірка на заборонені паролі або недостатню довжину
     if password in forbidden or len(password) < min_len:
         return "Заборонений"
 
@@ -54,6 +64,7 @@ def analyze_password(
     meets_all = has_digit and has_upper and has_lower and has_special
     meets_any = has_digit or has_upper or has_lower or has_special
 
+    # Перевірка на унікальність пароля у списку
     is_unique = all_passwords.count(password) == 1
 
     if meets_all:
@@ -75,6 +86,7 @@ def run_task1():
 
     working_passwords = PASSWORDS.copy()
     random.seed(42)
+    # Додаємо кілька дублікатів випадковим чином для перевірки унікальності
     random_indices = random.sample(range(len(working_passwords)), 3)
     for idx in random_indices:
         working_passwords.append(working_passwords[idx])
@@ -82,6 +94,7 @@ def run_task1():
     print(f"\n{'Пароль':<25} | {'Категорія надійності'}")
     print("-" * 55)
 
+    # Виконання аналізу для кожного пароля зі списку та вивід результатів у вигляді таблиці
     for pwd in working_passwords:
         category = analyze_password(
             pwd, working_passwords, CRITERIA, FORBIDDEN_PASSWORDS

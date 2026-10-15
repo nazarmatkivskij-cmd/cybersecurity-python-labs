@@ -3,9 +3,11 @@
 import os
 import sys
 
+# Налаштування шляхів для імпорту спільних даних студента з файлу shared/
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from shared.student import GROUP_NAME, STUDENT_NAME, VARIANT_NUMBER
 
+# Рольова модель доступу (RBAC): відповідність ролей та дозволених дій
 ROLE_PERMISSIONS = {
     "admin": {"read", "write", "delete", "execute", "export"},
     "analyst": {"read", "write", "export"},
@@ -13,6 +15,7 @@ ROLE_PERMISSIONS = {
     "guest": {"read"},
 }
 
+# Словник користувачів із зазначенням ролі, відділу, статусу активності та рівня допуску
 USERS = {
     "nazar_admin": {
         "role": "admin",
@@ -40,6 +43,7 @@ USERS = {
     },
 }
 
+# Ресурси системи та вимоги до них (мінімальний рівень допуску та дія)
 RESOURCES = {
     "confidential_report.pdf": {"required_level": 2, "action": "read"},
     "security_logs.db": {"required_level": 3, "action": "delete"},
@@ -47,23 +51,30 @@ RESOURCES = {
     "public_info.txt": {"required_level": 1, "action": "read"},
 }
 
-"""Головна функція демонстрації систем контролю доступу."""
+
 def check_access(
     username: str, resource_name: str, requested_action: str
 ) -> tuple[bool, str]:
+    """Перевіряє права доступу користувача до ресурсу на основі RBAC та ABAC,
+
+    повертаючи статус (успіх/відмова) та детальну причину.
+    """
     user = USERS.get(username)
     if not user:
         return False, f"Користувача '{username}' не знайдено."
 
+    # Перевірка активності акаунта
     if not user["is_active"]:
         return False, f"Акаунт користувача '{username}' деактивовано."
 
+    # Перевірка рольових дозволів (RBAC)
     user_role = user["role"]
     allowed_actions = ROLE_PERMISSIONS.get(user_role, set())
 
     if requested_action not in allowed_actions:
         return False, f"Роль '{user_role}' не має дозволу на дію '{requested_action}'."
 
+    # Перевірка атрибутів ресурсу та рівня допуску (ABAC)
     resource = RESOURCES.get(resource_name)
     if resource:
         if user["clearance_level"] < resource["required_level"]:
@@ -81,6 +92,7 @@ def run_task2():
     print("Завдання 2: Система контролю доступу (RBAC + ABAC)")
     print("=" * 60)
 
+    # Тестові набори запитів на доступ
     test_cases = [
         ("nazar_admin", "security_logs.db", "delete"),
         ("ihor_analyst", "confidential_report.pdf", "read"),
@@ -95,6 +107,7 @@ def run_task2():
     )
     print("-" * 80)
 
+    # Виконання перевірки для кожного тест-кейсу та вивід результатів у табличному вигляді
     for username, resource, action in test_cases:
         granted, reason = check_access(username, resource, action)
         status = "ALLOWED" if granted else "DENIED"

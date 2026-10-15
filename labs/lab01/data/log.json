@@ -246,5 +246,355 @@
             "SomePassword1!"
         ],
         "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 00:14:07",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 00:14:07",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 00:14:07",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 00:14:07",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 00:14:07",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 01:23:06",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:23:06",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 01:23:06",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 01:23:06",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:23:06",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 01:23:53",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:23:53",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 01:23:53",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 01:23:53",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:23:53",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 01:24:01",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:24:01",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 01:24:01",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 01:24:01",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:24:01",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 01:24:08",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:24:08",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 01:24:08",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 01:24:08",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 01:24:08",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 11:17:15",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 11:17:15",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 11:17:15",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 11:17:15",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 11:17:15",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "success",
+        "timestamp": "2026-10-02 11:17:39",
+        "args": [
+            "IoT@S3curity"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure",
+        "timestamp": "2026-10-02 11:17:39",
+        "args": [
+            "WrongPassword"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-10-02 11:17:39",
+        "args": [
+            ""
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "nazar_admin",
+        "result": "failure (ValidationError)",
+        "timestamp": "2026-10-02 11:17:39",
+        "args": [
+            "short"
+        ],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown_user",
+        "result": "failure",
+        "timestamp": "2026-10-02 11:17:39",
+        "args": [
+            "SomePassword1!"
+        ],
+        "kwargs": {}
     }
 ]
