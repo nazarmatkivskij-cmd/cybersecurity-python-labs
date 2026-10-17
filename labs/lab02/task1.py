@@ -44,6 +44,10 @@ class User:
         )
         return hmac.compare_digest(self.__password_hash, calculated_hash)
 
+    # Додаємо псевдонім verify_password для сумісності з викликами в UserAccount
+    def verify_password(self, password: str) -> bool:
+        return self.check_password(password)
+
     def deactivate(self):
         self.active = False
 
