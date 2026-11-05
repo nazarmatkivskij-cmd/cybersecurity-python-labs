@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS records;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    title TEXT NOT NULL,
+    category_id INTEGER NOT NULL,
+    value REAL NOT NULL,
+    status TEXT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
+);
